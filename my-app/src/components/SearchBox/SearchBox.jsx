@@ -21,19 +21,13 @@ class SearchBox extends Component {
     makeCall = (event) => {
         event.preventDefault()
         const {term, location} = this.state
+       
         const yelp = new URL ("https://api.yelp.com/v3/businesses/search"),
         params = {term: term, location: location, radius: 10000}
         Object.keys(params).forEach(key => yelp.searchParams.append(key, params[key]))
 
-        const headers = new Headers()
-        headers["Authorization"] = `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
-        
-
         const request = new Request(yelp)
-
         request.headers["Authorization"] = `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
-        request.headers["Access-Control-Allow-Headers"] = "*"
-        request.headers["Access-Control-Allow-Origin"] = "*"
         Object.defineProperty(request, "credentials", {writable: true})
         request.credentials = "include"
         
