@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
@@ -41,5 +42,4 @@
     "pino-colada": "^1.5.0"
   },
   "proxy": "http://localhost:3000/api/greeting"
-  
 }
