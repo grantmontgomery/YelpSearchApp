@@ -18,27 +18,38 @@ class SearchBox extends Component {
        this.setState({[event.target.name]: event.target.value})
     }
 
-    // makeCall = () => {
-    //     const {term, location} = this.state
-    //     const yelp = new URL ("https://api.yelp.com/v3/businesses/search"),
-    //     params = {term: term, location: location, radius: 10000}
+    makeCall = (event) => {
+        event.preventDefault()
+        const {term, location} = this.state
+        const yelp = new URL ("https://api.yelp.com/v3/businesses/search"),
+        params = {term: term, location: location, radius: 10000}
+        Object.keys(params).forEach(key => yelp.searchParams.append(key, params[key]))
 
-    //     Object.keys(params).forEach(key => yelp.searchParams.append(key, params[key]))
+        const headers = new Headers()
+        headers["Authorization"] = `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
+        
 
-    //     const response = fetch(yelp, {
-    //     headers: {
-    //     Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
-    //     }
-    //         })
+        const request = new Request(yelp)
 
-    //     response.then(resp => resp.json())
-    //     .then(data => console.log(data.businesses))
-    //     .catch(error => console.log(error.message))
-    // }
+        request.headers["Authorization"] = `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
+        request.headers["Access-Control-Allow-Headers"] = "*"
+        request.headers["Access-Control-Allow-Origin"] = "*"
+        Object.defineProperty(request, "credentials", {writable: true})
+        request.credentials = "include"
+        
+        fetch(request).then(resp => resp.json())
+        .then(data => console.log(data.businesses))
+        .catch(error => console.log(error.message))
+    }
 
-    // onHandleSubmit = (event) => {
+    onHandleSubmit = (event) => {
+        event.preventDefault()
+        this.makeCall()
+    }
+
+    // processENV = (event) => {
     //     event.preventDefault()
-    //     this.makeCall()
+    //     console.log(process.env.REACT_APP_YELP_API_KEY)
     // }
 
     // addTask = () => {
@@ -74,7 +85,7 @@ class SearchBox extends Component {
                     value={this.state.location}
                     onChange={e => this.updateTextInput(e)}/>
                     <br/>
-                    <button onClick={() => console.log(process.env.REACT_APP_YELP_API_KEY)}>
+                    <button onClick={e => this.makeCall(e)}>
                         Submit
                     </button>
                 </form>
