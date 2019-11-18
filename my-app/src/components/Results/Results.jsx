@@ -8,17 +8,12 @@ class Results extends Component {
   }
 
   render() {
+    console.log(this.props.Results);
     return (
       <div className="resultsBox">
-        <Result
-          id={this.props.Results[0].id}
-          image_url={this.props.Results[0].image_url}
-          location={this.props.Results[0].location}
-          price={this.props.Results[0].price}
-          rating={this.props.Results[0].rating}
-          review_count={this.props.Results[0].review_count}
-          categories={this.props.Results[0].categories}
-        ></Result>
+        {this.props.Results.map(result => {
+          return <Result key={result.id} result={result}></Result>;
+        })}
       </div>
     );
   }
