@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { AppContext } from "../../AppContext";
 import "./SearchBox.css";
-import App from "../../App";
 
 require("dotenv").config();
 
@@ -18,15 +16,6 @@ class SearchBox extends Component {
 
   updateTextInput = event => {
     this.setState({ [event.target.name]: event.target.value });
-  };
-
-  makeCall = (event, setresults) => {
-    event.preventDefault();
-    fetch("http://localhost:5000/yelpforward")
-      .then(resp => resp.json())
-      .then(data => this.setState({ Results: [...data] }))
-      .catch(error => console.log(error.message));
-    setresults(this.state.Results);
   };
 
   onHandleSubmit = event => {
@@ -57,9 +46,7 @@ class SearchBox extends Component {
                   onChange={e => this.updateTextInput(e)}
                 />
                 <br />
-                <button onClick={e => this.makeCall(e, value.setResults)}>
-                  Submit
-                </button>
+                <button onClick={e => value.makeCall(e)}>Submit</button>
               </form>
             </div>
           );

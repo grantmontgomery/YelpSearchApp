@@ -9,12 +9,17 @@ class App extends Component {
     super(props);
     this.state = {
       Results: [],
-      setResults: this.setResults
+      setResults: this.setResults,
+      makeCall: this.makeCall
     };
   }
 
-  setResults = search => {
-    this.setState({ Results: search });
+  makeCall = event => {
+    event.preventDefault();
+    fetch("http://localhost:5000/yelpforward")
+      .then(resp => resp.json())
+      .then(data => this.setState({ Results: [...data] }))
+      .catch(error => console.log(error.message));
   };
 
   render() {
