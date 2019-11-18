@@ -7,3 +7,7 @@
   height: 100px;
   width: auto;
 }
+
+.someClass {
+  width: 100vw;
+}
