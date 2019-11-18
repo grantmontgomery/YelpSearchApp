@@ -1,0 +1,9 @@
+.resultBox {
+  height: fit-content;
+  width: fit-content;
+}
+
+.resultBox img {
+  height: 100px;
+  width: auto;
+}

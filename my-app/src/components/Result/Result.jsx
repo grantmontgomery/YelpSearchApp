@@ -7,7 +7,8 @@ class Result extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="resultBox">
+        <img src={this.props.result.image_url} className="" alt="" />
         <ul>
           <li>{this.props.result.name}</li>
           <li>{this.props.result.location.city}</li>
