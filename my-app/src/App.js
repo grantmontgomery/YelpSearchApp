@@ -16,7 +16,7 @@ class App extends Component {
 
   makeCall = event => {
     event.preventDefault();
-    fetch("http://localhost:5000/yelpforward")
+    fetch("http://localhost:5000/")
       .then(resp => resp.json())
       .then(data => this.setState({ Results: [...data] }))
       .catch(error => console.log(error.message));
