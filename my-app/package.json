@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+    "concurrently": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0",
@@ -16,8 +17,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "client": "npm start",
     "server": "nodemon ./server/index.js",
-    "dev": "nodemon index"
+    "dev": "concurrently \"npm run server\" \"npm start\""
   },
   "eslintConfig": {
     "extends": "react-app"
