@@ -23,12 +23,11 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <AppContext.Provider value={this.state}>
         <div>
           <SearchBox></SearchBox>
-          <Results></Results>
+          <Results Results={this.state.Results}></Results>
         </div>
       </AppContext.Provider>
     );

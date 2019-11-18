@@ -9,8 +9,7 @@ class SearchBox extends Component {
     super(props);
     this.state = {
       term: "",
-      location: "",
-      Results: []
+      location: ""
     };
   }
 
