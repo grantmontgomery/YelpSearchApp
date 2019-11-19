@@ -17,9 +17,18 @@ class SearchBox extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  onHandleSubmit = event => {
+  onHandleSubmit = (event, makecall) => {
     event.preventDefault();
-    this.makeCall();
+    if (this.state.term === "" && this.state.location) {
+      alert("Must enter in a term and location");
+    } else if (this.state.term === "" && this.state.location !== "") {
+      alert("Must enter in a term.");
+    } else if (this.state.location === "" && this.state.term !== "") {
+      alert("Must enter in a location");
+    } else {
+      makecall(this.state.term, this.state.location);
+    }
+    this.setState({ term: "", location: "" });
   };
 
   render() {
@@ -45,7 +54,9 @@ class SearchBox extends Component {
                   onChange={e => this.updateTextInput(e)}
                 />
                 <br />
-                <button onClick={e => value.makeCall(e)}>Submit</button>
+                <button onClick={e => this.onHandleSubmit(e, value.makeCall)}>
+                  Submit
+                </button>
               </form>
             </div>
           );
