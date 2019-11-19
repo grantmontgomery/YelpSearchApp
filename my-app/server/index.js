@@ -14,8 +14,8 @@ app.use(cors());
 app.get("/", (req, res) => {
   const yelp = new URL("https://api.yelp.com/v3/businesses/search"),
     params = {
-      term: req.params.term,
-      location: req.params.location,
+      term: "bars",
+      location: "los angeles",
       radius: 15000
     };
 
