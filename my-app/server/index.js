@@ -11,7 +11,7 @@ app.use(json());
 app.use(urlEncoded({ extended: true }));
 app.use(cors());
 
-app.get("/", (req, res) => {
+app.get("/yelpsearch", (req, res) => {
   const yelp = new URL("https://api.yelp.com/v3/businesses/search"),
     params = {
       term: "bars",
