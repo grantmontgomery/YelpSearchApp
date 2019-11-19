@@ -8,12 +8,12 @@ const fetch = require("node-fetch");
 const app = express();
 
 app.use(json());
-app.use(urlEncoded({ extended: false }));
+app.use(urlEncoded({ extended: true }));
 app.use(cors());
 
 app.get("/", (req, res) => {
   const yelp = new URL("https://api.yelp.com/v3/businesses/search"),
-    params = { term: "restaurants", location: "Los Angeles", radius: 10000 };
+    params = { term: term, location: location, radius: 15000 };
 
   Object.keys(params).forEach(key =>
     yelp.searchParams.append(key, params[key])
