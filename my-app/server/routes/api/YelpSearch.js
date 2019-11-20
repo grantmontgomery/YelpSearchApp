@@ -20,3 +20,18 @@ router.get("/", (req, res) => {
     .then(data => res.send(data.businesses))
     .catch(error => console.log(error.message));
 });
+
+router.post("/", (req, res) => {
+  const newMember = {
+    id: uuid.v4,
+    name: req.body.name,
+    email: req.body.email,
+    status: "active"
+  };
+  if (!newMember.name || !newMember.email) {
+    res.status(400).json({ msg: "Please include a name and email." });
+  } else {
+    members.push(newMember);
+    res.json(members);
+  }
+});
