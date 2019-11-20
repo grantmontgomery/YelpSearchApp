@@ -8,6 +8,24 @@
   width: auto;
 }
 
-.someClass {
-  width: 100vw;
+.add {
+  border-radius: 6px;
+  background: green;
+  height: 30px;
+  width: 30px;
+  color: white;
+  margin: 0;
+  border: none;
+  text-align: center;
+}
+
+.remove {
+  border-radius: 6px;
+  background: red;
+  height: 30px;
+  width: 30px;
+  color: white;
+  margin: 0;
+  border: none;
+  text-align: center;
 }

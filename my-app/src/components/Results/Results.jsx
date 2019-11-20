@@ -8,7 +8,6 @@ class Results extends Component {
   }
 
   render() {
-    console.log(this.props.Results);
     return (
       <div className="resultsBox">
         {this.props.Results.map(result => {

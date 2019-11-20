@@ -10,10 +10,22 @@ class App extends Component {
     this.state = {
       Results: [],
       setResults: this.setResults,
-      makeCall: this.makeCall
+      makeCall: this.makeCall,
+      Venues: [],
+      addVenue: this.addVenue,
+      removeVenue: this.removeVenue
     };
   }
-
+  addVenue = venue => {
+    this.setState({
+      Venues: [...this.state.Venues, venue]
+    });
+  };
+  removeVenue = name => {
+    this.setState({
+      Venues: this.state.Venues.filter(venue => venue.name !== name)
+    });
+  };
   makeCall = (term, location) => {
     fetch("http://localhost:5000/", {
       headers: {
@@ -43,6 +55,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state.Venues);
     return (
       <AppContext.Provider value={this.state}>
         <div>
