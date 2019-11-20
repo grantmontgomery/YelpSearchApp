@@ -19,7 +19,7 @@ class SearchBox extends Component {
 
   onHandleSubmit = (event, makecall) => {
     event.preventDefault();
-    if (this.state.term === "" && this.state.location) {
+    if (this.state.term === "" && this.state.location === "") {
       alert("Must enter in a term and location");
     } else if (this.state.term === "" && this.state.location !== "") {
       alert("Must enter in a term.");
