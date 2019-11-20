@@ -15,21 +15,18 @@ class App extends Component {
   }
 
   makeCall = (term, location) => {
-    const input = {
-      term: term,
-      location: location
-    };
-    const response = fetch("http://localhost:5000/yelpsearch/", {
-      // method: "GET"
-      // body: JSON.stringify(input),
-      // headers: {
-      //   "Content-type": "application/json",
-      //   Accept: "application/json"
-      // }
+    const yelppost = new URL("http://localhost:5000/"),
+      params = { term: term, location: location };
+
+    Object.keys(params).forEach(key =>
+      yelppost.searchParams.append(key, params[key])
+    );
+    const response = fetch(yelppost, {
+      method: "POST"
     });
     response
-      .then(resp => resp.json())
-      .then(data => console.log(data[0]))
+      .then(resp => console.log(resp))
+      // .then(data => console.log(data[0]))
       // .then(data => console.log(data))
       .catch(error => console.log(error.message));
   };
