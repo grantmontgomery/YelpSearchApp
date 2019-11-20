@@ -37,7 +37,11 @@ app.use(cors());
 
 app.post("/", (req, res) => {
   const yelp = new URL("https://api.yelp.com/v3/businesses/search"),
-    params = { term: req.body.term, location: req.body.location };
+    params = {
+      term: req.body.term,
+      location: req.body.location,
+      radius: 15000
+    };
 
   Object.keys(params).forEach(key =>
     yelp.searchParams.append(key, params[key])

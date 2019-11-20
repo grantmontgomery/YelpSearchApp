@@ -24,7 +24,8 @@ class App extends Component {
       body: JSON.stringify({ term, location })
     })
       .then(res => res.json())
-      .then(data => console.log(data));
+      .then(data => this.setState({ Results: data.businesses }))
+      .catch(err => console.log(err.message));
     // const yelppost = new URL("http://localhost:5000/"),
     //   params = { term: term, location: location };
 
